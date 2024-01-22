@@ -1,8 +1,10 @@
 from setuptools import setup, find_packages
 
-# Read the contents of your requirements.txt file
-with open('requirements.txt', 'r') as f:
-    requirements = f.read().splitlines()
+try:
+    with open('requirements.txt', 'r') as f:
+        requirements = f.read().splitlines()
+except FileNotFoundError:
+    requirements = []
 
 setup(
     name='styleTTS2jspeech',
@@ -22,4 +24,5 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
     ],
+    include_package_data=True,  
 )

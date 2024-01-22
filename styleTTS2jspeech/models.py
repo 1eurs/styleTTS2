@@ -12,14 +12,14 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.utils import weight_norm, remove_weight_norm, spectral_norm
 
-from Utils.ASR.models import ASRCNN
-from Utils.JDC.model import JDCNet
+from .tts_module.Utils.ASR.models import ASRCNN
+from .tts_module.Utils.JDC.model import JDCNet
 
-from Modules.diffusion.sampler import KDiffusion, LogNormalDistribution
-from Modules.diffusion.modules import Transformer1d, StyleTransformer1d
-from Modules.diffusion.diffusion import AudioDiffusionConditional
+from .Modules.diffusion.sampler import KDiffusion, LogNormalDistribution
+from .Modules.diffusion.modules import Transformer1d, StyleTransformer1d
+from .Modules.diffusion.diffusion import AudioDiffusionConditional
 
-from Modules.discriminators import (
+from .Modules.discriminators import (
     MultiPeriodDiscriminator,
     MultiResSpecDiscriminator,
     WavLMDiscriminator,
@@ -754,7 +754,7 @@ def build_model(args, text_aligner, pitch_extractor, bert):
     assert args.decoder.type in ["istftnet", "hifigan"], "Decoder type unknown"
 
     if args.decoder.type == "istftnet":
-        from Modules.istftnet import Decoder
+        from .Modules.istftnet import Decoder
 
         decoder = Decoder(
             dim_in=args.hidden_dim,

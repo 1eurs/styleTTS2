@@ -1,1 +1,0 @@
-# styleTTS2-jspeech

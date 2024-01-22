@@ -7,10 +7,10 @@ from nltk.tokenize import word_tokenize
 import yaml
 import torchaudio
 import librosa
-from models import *
-from utils import *
-from text_utils import TextCleaner
-from Utils.PLBERT.util import load_plbert
+from styleTTS2jspeech.models import *
+from ..utils import *
+from styleTTS2jspeech.text_utils import TextCleaner
+from .Utils.PLBERT.util import load_plbert
 import phonemizer
 
 torch.manual_seed(0)
@@ -63,14 +63,25 @@ global_phonemizer = phonemizer.backend.EspeakBackend(language='en-us', preserve_
 
 config = yaml.safe_load(open(str(cached_path('hf://yl4579/StyleTTS2-LJSpeech/Models/LJSpeech/config.yml'))))
 
-ASR_config = config.get('ASR_config', False)
-ASR_path = config.get('ASR_path', False)
+script_dir = os.path.dirname(__file__)
+
+# ASR_config = config.get('ASR_config', False)
+ASR_config = os.path.join(script_dir, config['ASR_config'])
+
+# ASR_path = config.get('ASR_path', False)
+ASR_path = os.path.join(script_dir, config['ASR_path'])
+
+
 text_aligner = load_ASR_models(ASR_path, ASR_config)
 
-F0_path = config.get('F0_path', False)
+# F0_path = config.get('F0_path', False)
+F0_path = os.path.join(script_dir, config['F0_path'])
+
 pitch_extractor = load_F0_models(F0_path)
 
-BERT_path = config.get('PLBERT_dir', False)
+# BERT_path = config.get('PLBERT_dir', False)
+BERT_path = os.path.join(script_dir, config['PLBERT_dir'])
+
 plbert = load_plbert(BERT_path)
 
 model = build_model(recursive_munch(config['model_params']), text_aligner, pitch_extractor, plbert)
@@ -98,7 +109,7 @@ for key in model:
 #                 _load(params[key], model[key])
 _ = [model[key].eval() for key in model]
 
-from Modules.diffusion.sampler import DiffusionSampler, ADPM2Sampler, KarrasSchedule
+from ..Modules.diffusion.sampler import DiffusionSampler, ADPM2Sampler, KarrasSchedule
 
 sampler = DiffusionSampler(
     model.diffusion.diffusion,
