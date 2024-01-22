@@ -22,8 +22,7 @@ MANIFEST
 .DS_Store
 Thumbs.db
 
-# Ignore your environment-specific requirements files
-requirements.txt
+
 
 # Ignore compiled Python files
 *.pyc
