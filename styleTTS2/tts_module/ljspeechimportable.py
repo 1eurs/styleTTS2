@@ -7,9 +7,9 @@ from nltk.tokenize import word_tokenize
 import yaml
 import torchaudio
 import librosa
-from styleTTS2jspeech.models import *
+from styleTTS2.models import *
 from ..utils import *
-from styleTTS2jspeech.text_utils import TextCleaner
+from styleTTS2.text_utils import TextCleaner
 from .Utils.PLBERT.util import load_plbert
 import phonemizer
 

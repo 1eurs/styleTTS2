@@ -1,4 +1,4 @@
-import styleTTS2jspeech.tts_module.ljspeechimportable as ljspeechimportable
+import styleTTS2.tts_module.ljspeechimportable as ljspeechimportable
 
 import torch
 from tortoise.utils.text import split_and_recombine_text
