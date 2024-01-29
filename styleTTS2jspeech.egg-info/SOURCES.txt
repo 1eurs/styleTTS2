@@ -1,6 +1,0 @@
-MANIFEST.in
-setup.py
-styleTTS2jspeech.egg-info/PKG-INFO
-styleTTS2jspeech.egg-info/SOURCES.txt
-styleTTS2jspeech.egg-info/dependency_links.txt
-styleTTS2jspeech.egg-info/top_level.txt
