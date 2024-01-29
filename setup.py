@@ -7,7 +7,7 @@ except FileNotFoundError:
     requirements = []
 
 setup(
-    name='styleTTS2jspeech',
+    name='styleTTS2',
     version='0.1.0',
     packages=find_packages(),
     install_requires=requirements,
